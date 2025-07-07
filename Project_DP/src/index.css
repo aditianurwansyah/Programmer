@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 45 20% 97%;
+    --foreground: 30 15% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 25 60% 35%;
+    --primary-foreground: 45 20% 97%;
+
+    --secondary: 45 25% 85%;
+    --secondary-foreground: 30 15% 25%;
+
+    --muted: 45 25% 92%;
+    --muted-foreground: 30 10% 45%;
+
+    --accent: 40 70% 60%;
+    --accent-foreground: 30 15% 15%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 45 25% 88%;
+    --input: 45 25% 88%;
+    --ring: 25 60% 35%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 30 15% 8%;
+    --foreground: 45 20% 95%;
+
+    --card: 30 15% 10%;
+    --card-foreground: 45 20% 95%;
+
+    --popover: 30 15% 10%;
+    --popover-foreground: 45 20% 95%;
+
+    --primary: 40 70% 60%;
+    --primary-foreground: 30 15% 8%;
+
+    --secondary: 30 15% 15%;
+    --secondary-foreground: 45 20% 85%;
+
+    --muted: 30 15% 15%;
+    --muted-foreground: 45 10% 65%;
+
+    --accent: 25 60% 35%;
+    --accent-foreground: 45 20% 95%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 30 15% 18%;
+    --input: 30 15% 18%;
+    --ring: 40 70% 60%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background: linear-gradient(135deg, #f5f5dc 0%, #eaddd7 100%);
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  .hero-gradient {
+    background: linear-gradient(
+      135deg,
+      rgba(139, 69, 19, 0.1) 0%,
+      rgba(245, 245, 220, 0.3) 50%,
+      rgba(255, 215, 0, 0.1) 100%
+    );
+  }
+
+  .cultural-pattern {
+    background-image: radial-gradient(
+        circle at 25% 25%,
+        rgba(139, 69, 19, 0.1) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 75% 75%,
+        rgba(255, 215, 0, 0.1) 0%,
+        transparent 50%
+      );
+  }
+}

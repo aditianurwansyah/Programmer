@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kuis Budaya - BhraGha</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brown: {
+                50: "#fdf8f6",
+                100: "#f2e8e5",
+                200: "#eaddd7",
+                300: "#e0cec7",
+                400: "#d2bab0",
+                500: "#bfa094",
+                600: "#a18072",
+                700: "#977669",
+                800: "#8B4513",
+                900: "#654321",
+              },
+              cream: {
+                50: "#fefdf8",
+                100: "#fdf8e1",
+                200: "#fbf0c4",
+                300: "#f8e497",
+                400: "#f4d76a",
+                500: "#F5F5DC",
+                600: "#e6d5a3",
+                700: "#d4c072",
+                800: "#c2a83d",
+                900: "#a08c2a",
+              },
+              gold: {
+                50: "#fffbeb",
+                100: "#fef3c7",
+                200: "#fde68a",
+                300: "#fcd34d",
+                400: "#fbbf24",
+                500: "#f59e0b",
+                600: "#d97706",
+                700: "#b45309",
+                800: "#92400e",
+                900: "#78350f",
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        background: linear-gradient(135deg, #f5f5dc 0%, #eaddd7 100%);
+        min-height: 100vh;
+      }
+      .quiz-option {
+        transition: all 0.3s ease;
+      }
+      .quiz-option:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+      }
+      .quiz-option.selected {
+        background-color: #8b4513;
+        color: white;
+      }
+      .quiz-option.correct {
+        background-color: #16a34a;
+        color: white;
+      }
+      .quiz-option.incorrect {
+        background-color: #dc2626;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="bg-brown-800 shadow-lg sticky top-0 z-50">
+      <div class="container mx-auto px-4 py-4">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-3">
+            <div
+              class="w-12 h-12 bg-cream-500 rounded-full flex items-center justify-center"
+            >
+              <div
+                class="w-8 h-8 bg-brown-800 rounded-full flex items-center justify-center"
+              >
+                <div class="w-4 h-4 bg-cream-500 rounded-full"></div>
+              </div>
+            </div>
+            <div>
+              <h1 class="text-2xl font-bold text-cream-100">BhraGha</h1>
+              <p class="text-cream-300 text-sm">
+                Platform Edukasi Sosial Budaya
+              </p>
+            </div>
+          </div>
+
+          <nav class="hidden md:flex items-center space-x-8">
+            <a
+              href="index.html"
+              class="text-cream-200 hover:text-gold-400 transition-colors duration-200 font-medium"
+              >Beranda</a
+            >
+            <a
+              href="deteksi-ai.html"
+              class="text-cream-200 hover:text-gold-400 transition-colors duration-200 font-medium"
+              >Deteksi AI</a
+            >
+            <a
+              href="cerita-budaya.html"
+              class="text-cream-200 hover:text-gold-400 transition-colors duration-200 font-medium"
+              >Cerita Budaya</a
+            >
+            <a
+              href="forum.html"
+              class="text-cream-200 hover:text-gold-400 transition-colors duration-200 font-medium"
+              >Forum</a
+            >
+            <a href="kuis.html" class="text-gold-400 font-medium">Kuis</a>
+            <a
+              href="dashboard.html"
+              class="text-cream-200 hover:text-gold-400 transition-colors duration-200 font-medium"
+              >Dashboard</a
+            >
+          </nav>
+
+          <button
+            onclick="window.location.href='dashboard.html'"
+            class="bg-gold-600 hover:bg-gold-700 text-brown-900 font-semibold px-6 py-2 rounded-md transition-all duration-200"
+          >
+            Dashboard
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="py-8 px-4">
+      <div class="container mx-auto max-w-4xl">
+        <!-- Header Section -->
+        <div class="text-center mb-12">
+          <div
+            class="w-20 h-20 bg-brown-800 rounded-full flex items-center justify-center mx-auto mb-4"
+          >
+            <span class="text-3xl">🎯</span>
+          </div>
+          <h2 class="text-4xl font-bold text-brown-800 mb-4">
+            Kuis Budaya Indonesia
+          </h2>
+          <p class="text-brown-600 text-lg max-w-2xl mx-auto">
+            Uji pengetahuan budaya Indonesia Anda melalui kuis interaktif yang
+            menarik dan edukatif. Pelajari sambil bermain dan tingkatkan wawasan
+            budaya nusantara.
+          </p>
+        </div>
+
+        <!-- Quiz Categories -->
+        <div
+          id="categoriesSection"
+          class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8"
+        >
+          <div
+            class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow cursor-pointer"
+            onclick="startQuiz('seni')"
+          >
+            <div
+              class="w-16 h-16 bg-brown-800 rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <span class="text-2xl">🎭</span>
+            </div>
+            <h3 class="text-xl font-bold text-brown-800 mb-2 text-center">
+              Seni & Budaya
+            </h3>
+            <p class="text-brown-600 text-center mb-4">
+              Batik, wayang, tarian tradisional, dan seni rupa nusantara
+            </p>
+            <div class="text-center">
+              <span
+                class="bg-brown-100 text-brown-800 px-3 py-1 rounded-full text-sm"
+                >15 pertanyaan</span
+              >
+            </div>
+          </div>
+
+          <div
+            class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow cursor-pointer"
+            onclick="startQuiz('sejarah')"
+          >
+            <div
+              class="w-16 h-16 bg-brown-800 rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <span class="text-2xl">🏛️</span>
+            </div>
+            <h3 class="text-xl font-bold text-brown-800 mb-2 text-center">
+              Sejarah & Peradaban
+            </h3>
+            <p class="text-brown-600 text-center mb-4">
+              Kerajaan-kerajaan Indonesia dan tokoh sejarah nusantara
+            </p>
+            <div class="text-center">
+              <span
+                class="bg-brown-100 text-brown-800 px-3 py-1 rounded-full text-sm"
+                >20 pertanyaan</span
+              >
+            </div>
+          </div>
+
+          <div
+            class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow cursor-pointer"
+            onclick="startQuiz('kuliner')"
+          >
+            <div
+              class="w-16 h-16 bg-brown-800 rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <span class="text-2xl">🍲</span>
+            </div>
+            <h3 class="text-xl font-bold text-brown-800 mb-2 text-center">
+              Kuliner Nusantara
+            </h3>
+            <p class="text-brown-600 text-center mb-4">
+              Makanan tradisional dan minuman khas dari berbagai daerah
+            </p>
+            <div class="text-center">
+              <span
+                class="bg-brown-100 text-brown-800 px-3 py-1 rounded-full text-sm"
+                >12 pertanyaan</span
+              >
+            </div>
+          </div>
+
+          <div
+            class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow cursor-pointer"
+            onclick="startQuiz('bahasa')"
+          >
+            <div
+              class="w-16 h-16 bg-brown-800 rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <span class="text-2xl">💬</span>
+            </div>
+            <h3 class="text-xl font-bold text-brown-800 mb-2 text-center">
+              Bahasa Daerah
+            </h3>
+            <p class="text-brown-600 text-center mb-4">
+              Bahasa dan dialek dari berbagai suku di Indonesia
+            </p>
+            <div class="text-center">
+              <span
+                class="bg-brown-100 text-brown-800 px-3 py-1 rounded-full text-sm"
+                >18 pertanyaan</span
+              >
+            </div>
+          </div>
+
+          <div
+            class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow cursor-pointer"
+            onclick="startQuiz('adat')"
+          >
+            <div
+              class="w-16 h-16 bg-brown-800 rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <span class="text-2xl">🎪</span>
+            </div>
+            <h3 class="text-xl font-bold text-brown-800 mb-2 text-center">
+              Adat & Tradisi
+            </h3>
+            <p class="text-brown-600 text-center mb-4">
+              Upacara adat, tradisi, dan kepercayaan lokal
+            </p>
+            <div class="text-center">
+              <span
+                class="bg-brown-100 text-brown-800 px-3 py-1 rounded-full text-sm"
+                >16 pertanyaan</span
+              >
+            </div>
+          </div>
+
+          <div
+            class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow cursor-pointer"
+            onclick="startQuiz('campuran')"
+          >
+            <div
+              class="w-16 h-16 bg-brown-800 rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <span class="text-2xl">🎲</span>
+            </div>
+            <h3 class="text-xl font-bold text-brown-800 mb-2 text-center">
+              Kuis Campuran
+            </h3>
+            <p class="text-brown-600 text-center mb-4">
+              Berbagai topik budaya Indonesia dalam satu kuis
+            </p>
+            <div class="text-center">
+              <span
+                class="bg-brown-100 text-brown-800 px-3 py-1 rounded-full text-sm"
+                >25 pertanyaan</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Quiz Section (Hidden by default) -->
+        <div id="quizSection" class="hidden">
+          <!-- Quiz Header -->
+          <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+            <div class="flex justify-between items-center mb-4">
+              <h3 id="quizTitle" class="text-2xl font-bold text-brown-800">
+                Kuis Seni & Budaya
+              </h3>
+              <button
+                onclick="exitQuiz()"
+                class="text-brown-600 hover:text-brown-800"
+              >
+                ✕
+              </button>
+            </div>
+            <div class="flex justify-between items-center">
+              <div class="text-brown-600">
+                Pertanyaan <span id="currentQuestion">1</span> dari
+                <span id="totalQuestions">15</span>
+              </div>
+              <div class="text-brown-600">
+                Skor: <span id="currentScore">0</span>
+              </div>
+            </div>
+            <!-- Progress Bar -->
+            <div class="w-full bg-brown-200 rounded-full h-2 mt-4">
+              <div
+                id="progressBar"
+                class="bg-brown-800 h-2 rounded-full transition-all duration-300"
+                style="width: 0%"
+              ></div>
+            </div>
+          </div>
+
+          <!-- Question Card -->
+          <div id="questionCard" class="bg-white rounded-lg shadow-lg p-8 mb-6">
+            <h4
+              id="questionText"
+              class="text-xl font-semibold text-brown-800 mb-6"
+            >
+              <!-- Question will be loaded here -->
+            </h4>
+            <div id="optionsContainer" class="space-y-3">
+              <!-- Options will be loaded here -->
+            </div>
+          </div>
+
+          <!-- Quiz Navigation -->
+          <div class="flex justify-between">
+            <button
+              id="prevButton"
+              onclick="previousQuestion()"
+              class="bg-brown-600 hover:bg-brown-700 text-white px-6 py-3 rounded-lg transition-colors"
+              disabled
+            >
+              ← Sebelumnya
+            </button>
+            <button
+              id="nextButton"
+              onclick="nextQuestion()"
+              class="bg-brown-800 hover:bg-brown-900 text-white px-6 py-3 rounded-lg transition-colors"
+            >
+              Selanjutnya →
+            </button>
+          </div>
+        </div>
+
+        <!-- Results Section (Hidden by default) -->
+        <div id="resultsSection" class="hidden">
+          <div class="bg-white rounded-lg shadow-lg p-8 text-center">
+            <div
+              class="w-24 h-24 bg-brown-800 rounded-full flex items-center justify-center mx-auto mb-6"
+            >
+              <span id="resultIcon" class="text-4xl">🏆</span>
+            </div>
+            <h3 class="text-3xl font-bold text-brown-800 mb-4">
+              Kuis Selesai!
+            </h3>
+            <div class="text-6xl font-bold text-brown-800 mb-2">
+              <span id="finalScore">0</span>/<span id="finalTotal">15</span>
+            </div>
+            <p id="scoreMessage" class="text-xl text-brown-600 mb-6">
+              Luar biasa! Anda sangat menguasai budaya Indonesia!
+            </p>
+
+            <div class="grid md:grid-cols-3 gap-4 mb-8">
+              <div class="bg-brown-50 rounded-lg p-4">
+                <div
+                  class="text-2xl font-bold text-brown-800"
+                  id="correctAnswers"
+                >
+                  12
+                </div>
+                <div class="text-brown-600">Jawaban Benar</div>
+              </div>
+              <div class="bg-brown-50 rounded-lg p-4">
+                <div
+                  class="text-2xl font-bold text-brown-800"
+                  id="accuracyPercentage"
+                >
+                  80%
+                </div>
+                <div class="text-brown-600">Akurasi</div>
+              </div>
+              <div class="bg-brown-50 rounded-lg p-4">
+                <div class="text-2xl font-bold text-brown-800" id="timeTaken">
+                  5:30
+                </div>
+                <div class="text-brown-600">Waktu</div>
+              </div>
+            </div>
+
+            <div class="space-y-4">
+              <button
+                onclick="restartQuiz()"
+                class="bg-brown-800 hover:bg-brown-900 text-white px-8 py-3 rounded-lg transition-colors mr-4"
+              >
+                Ulangi Kuis
+              </button>
+              <button
+                onclick="backToCategories()"
+                class="bg-gold-600 hover:bg-gold-700 text-brown-900 px-8 py-3 rounded-lg transition-colors"
+              >
+                Pilih Kuis Lain
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Learning Materials -->
+        <div id="learningSection" class="mt-12">
+          <h3 class="text-2xl font-bold text-brown-800 mb-6 text-center">
+            Materi Pembelajaran
+          </h3>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-white rounded-lg shadow-lg p-6">
+              <h4 class="font-bold text-brown-800 mb-3">📚 Panduan Budaya</h4>
+              <p class="text-brown-600 text-sm mb-4">
+                Pelajari dasar-dasar budaya Indonesia sebelum mengikuti kuis
+              </p>
+              <button
+                class="text-brown-700 hover:underline text-sm font-medium"
+              >
+                Baca Panduan →
+              </button>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-6">
+              <h4 class="font-bold text-brown-800 mb-3">📖 Glosarium</h4>
+              <p class="text-brown-600 text-sm mb-4">
+                Kamus istilah budaya Indonesia yang sering muncul dalam kuis
+              </p>
+              <button
+                class="text-brown-700 hover:underline text-sm font-medium"
+              >
+                Lihat Glosarium →
+              </button>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-6">
+              <h4 class="font-bold text-brown-800 mb-3">
+                🎥 Video Pembelajaran
+              </h4>
+              <p class="text-brown-600 text-sm mb-4">
+                Tonton video edukatif tentang berbagai aspek budaya Indonesia
+              </p>
+              <button
+                class="text-brown-700 hover:underline text-sm font-medium"
+              >
+                Tonton Video →
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-brown-900 text-cream-100 py-8 px-4 mt-16">
+      <div class="container mx-auto text-center">
+        <div class="flex items-center justify-center space-x-3 mb-4">
+          <div
+            class="w-10 h-10 bg-cream-500 rounded-full flex items-center justify-center"
+          >
+            <div
+              class="w-6 h-6 bg-brown-900 rounded-full flex items-center justify-center"
+            >
+              <div class="w-3 h-3 bg-cream-500 rounded-full"></div>
+            </div>
+          </div>
+          <h3 class="text-xl font-bold">BhraGha</h3>
+        </div>
+        <p class="text-cream-400">
+          &copy; 2024 BhraGha. Semua hak cipta dilindungi.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      let currentQuizData = {};
+      let currentQuestionIndex = 0;
+      let userAnswers = [];
+      let startTime = null;
+
+      const sampleQuestions = {
+        seni: [
+          {
+            question:
+              "Apa nama teknik pewarnaan batik yang menggunakan lilin sebagai perintang warna?",
+            options: ["Jumputan", "Ikat", "Canting", "Resist dyeing"],
+            correct: 3,
+          },
+          {
+            question: "Wayang kulit berasal dari daerah mana?",
+            options: ["Bali", "Jawa", "Sumatera", "Sulawesi"],
+            correct: 1,
+          },
+          {
+            question: "Tari Kecak berasal dari daerah?",
+            options: [
+              "Jawa Tengah",
+              "Bali",
+              "Sumatera Barat",
+              "Sulawesi Selatan",
+            ],
+            correct: 1,
+          },
+          {
+            question: "Alat musik tradisional Angklung berasal dari?",
+            options: ["Jawa Barat", "Jawa Tengah", "Jawa Timur", "Banten"],
+            correct: 0,
+          },
+          {
+            question: "Kesenian Reog Ponorogo berasal dari provinsi?",
+            options: [
+              "Jawa Tengah",
+              "Jawa Timur",
+              "Jawa Barat",
+              "DI Yogyakarta",
+            ],
+            correct: 1,
+          },
+          {
+            question: "Motif batik yang terkenal dari Solo adalah?",
+            options: ["Mega Mendung", "Parang", "Truntum", "Kawung"],
+            correct: 1,
+          },
+          {
+            question: "Alat musik Sasando berasal dari?",
+            options: ["Bali", "Lombok", "NTT", "NTB"],
+            correct: 2,
+          },
+          {
+            question: "Tari Saman berasal dari provinsi?",
+            options: ["Sumatera Utara", "Aceh", "Sumatera Barat", "Riau"],
+            correct: 1,
+          },
+          {
+            question: "Ukiran kayu Jepara terkenal berasal dari?",
+            options: [
+              "Jawa Tengah",
+              "Jawa Timur",
+              "Jawa Barat",
+              "DI Yogyakarta",
+            ],
+            correct: 0,
+          },
+          {
+            question: "Kesenian Randai berasal dari?",
+            options: ["Sumatera Utara", "Sumatera Barat", "Riau", "Jambi"],
+            correct: 1,
+          },
+          {
+            question: "Tari Pendet berasal dari?",
+            options: ["Jawa", "Bali", "Lombok", "Sumbawa"],
+            correct: 1,
+          },
+          {
+            question: "Alat musik Kolintang berasal dari?",
+            options: ["Sulawesi Utara", "Sulawesi Selatan", "Maluku", "Papua"],
+            correct: 0,
+          },
+          {
+            question: "Seni ukir Asmat terkenal dari daerah?",
+            options: ["Papua", "Maluku", "NTT", "Sulawesi"],
+            correct: 0,
+          },
+          {
+            question: "Tari Tor-tor berasal dari suku?",
+            options: ["Minang", "Batak", "Dayak", "Bugis"],
+            correct: 1,
+          },
+          {
+            question: "Kerajinan tenun songket terkenal dari?",
+            options: ["Palembang", "Medan", "Padang", "Pekanbaru"],
+            correct: 0,
+          },
+        ],
+        sejarah: [
+          {
+            question: "Kerajaan Majapahit didirikan oleh?",
+            options: ["Raden Wijaya", "Gajah Mada", "Hayam Wuruk", "Ken Arok"],
+            correct: 0,
+          },
+          {
+            question: "Candi Borobudur dibangun pada masa kerajaan?",
+            options: ["Majapahit", "Sailendra", "Mataram Kuno", "Singasari"],
+            correct: 1,
+          },
+          {
+            question: "Siapa yang dijuluki sebagai Bapak Pendidikan Indonesia?",
+            options: [
+              "R.A. Kartini",
+              "Ki Hajar Dewantara",
+              "Ir. Soekarno",
+              "Mohammad Hatta",
+            ],
+            correct: 1,
+          },
+          {
+            question: "Kerajaan Sriwijaya berpusat di?",
+            options: ["Jambi", "Palembang", "Medan", "Pekanbaru"],
+            correct: 1,
+          },
+          {
+            question: "Proklamasi Kemerdekaan Indonesia dibacakan tanggal?",
+            options: [
+              "16 Agustus 1945",
+              "17 Agustus 1945",
+              "18 Agustus 1945",
+              "15 Agustus 1945",
+            ],
+            correct: 1,
+          },
+          {
+            question: "Siapa yang merancang teks Proklamasi?",
+            options: [
+              "Ir. Soekarno",
+              "Mohammad Hatta",
+              "Ahmad Soebardjo",
+              "Sukarni",
+            ],
+            correct: 2,
+          },
+          {
+            question: "Perang Diponegoro terjadi pada tahun?",
+            options: ["1825-1830", "1820-1825", "1830-1835", "1815-1820"],
+            correct: 0,
+          },
+          {
+            question: "Cut Nyak Dhien adalah pahlawan dari?",
+            options: ["Sumatera Barat", "Aceh", "Sumatera Utara", "Riau"],
+            correct: 1,
+          },
+          {
+            question:
+              "Kerajaan Kutai adalah kerajaan tertua di Indonesia yang terletak di?",
+            options: [
+              "Kalimantan Timur",
+              "Kalimantan Selatan",
+              "Kalimantan Barat",
+              "Kalimantan Tengah",
+            ],
+            correct: 0,
+          },
+          {
+            question: "Siapa pendiri Kerajaan Demak?",
+            options: [
+              "Sultan Agung",
+              "Raden Patah",
+              "Pangeran Diponegoro",
+              "Sultan Hasanudin",
+            ],
+            correct: 1,
+          },
+          {
+            question: "Kerajaan Tarumanagara berpusat di?",
+            options: ["Jawa Barat", "Jawa Tengah", "Jawa Timur", "Banten"],
+            correct: 0,
+          },
+          {
+            question: "Sultan Hasanuddin adalah raja dari kerajaan?",
+            options: ["Bone", "Gowa", "Luwu", "Soppeng"],
+            correct: 1,
+          },
+          {
+            question: "Perang Puputan terjadi di?",
+            options: ["Jawa", "Bali", "Lombok", "Sumbawa"],
+            correct: 1,
+          },
+          {
+            question: "Siapa yang memimpin perlawanan Perang Aceh?",
+            options: [
+              "Teuku Umar",
+              "Cut Nyak Dhien",
+              "Teuku Cik Ditiro",
+              "Semua benar",
+            ],
+            correct: 3,
+          },
+          {
+            question: "Kerajaan Singasari didirikan oleh?",
+            options: ["Ken Arok", "Anusapati", "Tohjaya", "Wisnuwardhana"],
+            correct: 0,
+          },
+          {
+            question: "Candi Prambanan dibangun pada masa kerajaan?",
+            options: ["Mataram Kuno", "Majapahit", "Sailendra", "Singasari"],
+            correct: 0,
+          },
+          {
+            question: "Perang Padri terjadi di?",
+            options: ["Sumatera Barat", "Sumatera Utara", "Aceh", "Riau"],
+            correct: 0,
+          },
+          {
+            question: "Siapa yang dikenal sebagai Ayah Bangsa Indonesia?",
+            options: [
+              "Ir. Soekarno",
+              "Mohammad Hatta",
+              "Ki Hajar Dewantara",
+              "Tan Malaka",
+            ],
+            correct: 0,
+          },
+          {
+            question: "Konferensi Meja Bundar dilaksanakan di?",
+            options: ["Jakarta", "Den Haag", "Amsterdam", "Yogyakarta"],
+            correct: 1,
+          },
+          {
+            question: "Agresi Militer Belanda II terjadi pada tahun?",
+            options: ["1947", "1948", "1949", "1950"],
+            correct: 1,
+          },
+        ],
+        kuliner: [
+          {
+            question: "Makanan khas Padang yang terkenal adalah?",
+            options: ["Gudeg", "Rendang", "Rawon", "Soto Betawi"],
+            correct: 1,
+          },
+          {
+            question: "Gudeg adalah makanan khas dari?",
+            options: ["Solo", "Yogyakarta", "Semarang", "Surabaya"],
+            correct: 1,
+          },
+          {
+            question: "Pempek adalah makanan khas dari?",
+            options: ["Lampung", "Palembang", "Jambi", "Bengkulu"],
+            correct: 1,
+          },
+          {
+            question: "Es Cendol berasal dari daerah?",
+            options: ["Jawa Barat", "Jawa Tengah", "Jawa Timur", "Banten"],
+            correct: 0,
+          },
+          {
+            question: "Kerak Telor adalah makanan khas?",
+            options: ["Bandung", "Jakarta", "Bogor", "Depok"],
+            correct: 1,
+          },
+          {
+            question: "Sate Lilit adalah makanan khas dari?",
+            options: ["Lombok", "Bali", "NTT", "NTB"],
+            correct: 1,
+          },
+          {
+            question: "Papeda adalah makanan pokok dari?",
+            options: ["Papua", "Maluku", "Sulawesi", "Kalimantan"],
+            correct: 0,
+          },
+          {
+            question: "Coto Makassar berasal dari?",
+            options: [
+              "Sulawesi Selatan",
+              "Sulawesi Utara",
+              "Sulawesi Tengah",
+              "Sulawesi Tenggara",
+            ],
+            correct: 0,
+          },
+          {
+            question: "Nasi Liwet adalah makanan khas?",
+            options: ["Bandung", "Solo", "Semarang", "Cirebon"],
+            correct: 1,
+          },
+          {
+            question: "Soto Lamongan berasal dari?",
+            options: ["Jawa Barat", "Jawa Tengah", "Jawa Timur", "Banten"],
+            correct: 2,
+          },
+          {
+            question: "Asinan Betawi terbuat dari?",
+            options: [
+              "Buah-buahan",
+              "Sayuran",
+              "Tahu dan tempe",
+              "Semua benar",
+            ],
+            correct: 3,
+          },
+          {
+            question: "Lontong Sayur adalah makanan khas?",
+            options: ["Betawi", "Sunda", "Jawa", "Semua benar"],
+            correct: 3,
+          },
+        ],
+        bahasa: [
+          {
+            question: "Dalam bahasa Jawa, 'sampun' artinya?",
+            options: ["Belum", "Sudah", "Akan", "Sedang"],
+            correct: 1,
+          },
+          {
+            question: "Dalam bahasa Sunda, 'kumaha' artinya?",
+            options: ["Kapan", "Dimana", "Bagaimana", "Mengapa"],
+            correct: 2,
+          },
+          {
+            question: "Bahasa daerah 'Minangkabau' berasal dari?",
+            options: ["Sumatera Utara", "Sumatera Barat", "Riau", "Jambi"],
+            correct: 1,
+          },
+          {
+            question: "Dalam bahasa Batak, 'horas' artinya?",
+            options: [
+              "Selamat datang",
+              "Sampai jumpa",
+              "Terima kasih",
+              "Salam sejahtera",
+            ],
+            correct: 3,
+          },
+          {
+            question: "Bahasa Sasak digunakan di?",
+            options: ["Bali", "Lombok", "Sumbawa", "Flores"],
+            correct: 1,
+          },
+          {
+            question: "Dalam bahasa Betawi, 'kepo' artinya?",
+            options: ["Malas", "Ingin tahu", "Bingung", "Senang"],
+            correct: 1,
+          },
+          {
+            question: "Aksara Jawa disebut juga?",
+            options: ["Hanacaraka", "Kaganga", "Pallawa", "Brahmi"],
+            correct: 0,
+          },
+          {
+            question: "Dalam bahasa Bugis, 'pole' artinya?",
+            options: ["Pergi", "Datang", "Duduk", "Berdiri"],
+            correct: 1,
+          },
+          {
+            question: "Bahasa daerah di Papua yang terkenal adalah?",
+            options: ["Dani", "Asmat", "Sentani", "Semua benar"],
+            correct: 3,
+          },
+          {
+            question: "Dalam bahasa Bali, 'Om Swastiastu' artinya?",
+            options: [
+              "Selamat pagi",
+              "Salam sejahtera",
+              "Terima kasih",
+              "Selamat tinggal",
+            ],
+            correct: 1,
+          },
+          {
+            question: "Dalam bahasa Makassar, 'mangkasara' artinya?",
+            options: [
+              "Bagaimana kabar",
+              "Selamat datang",
+              "Apa kabar",
+              "Terima kasih",
+            ],
+            correct: 2,
+          },
+          {
+            question: "Bahasa Rejang berasal dari?",
+            options: ["Bengkulu", "Lampung", "Jambi", "Sumatera Selatan"],
+            correct: 0,
+          },
+          {
+            question: "Dalam bahasa Madura, 'pesse' artinya?",
+            options: ["Uang", "Makanan", "Rumah", "Air"],
+            correct: 0,
+          },
+          {
+            question: "Aksara Batak disebut juga?",
+            options: ["Surat Batak", "Pustaha", "Sipelebegu", "Semua benar"],
+            correct: 3,
+          },
+          {
+            question: "Dalam bahasa Dayak, 'tabea' artinya?",
+            options: [
+              "Selamat tinggal",
+              "Selamat datang",
+              "Terima kasih",
+              "Maaf",
+            ],
+            correct: 1,
+          },
+          {
+            question: "Bahasa Gorontalo digunakan di?",
+            options: [
+              "Sulawesi Utara",
+              "Gorontalo",
+              "Sulawesi Tengah",
+              "Maluku Utara",
+            ],
+            correct: 1,
+          },
+          {
+            question: "Dalam bahasa Aceh, 'jeut' artinya?",
+            options: ["Tidak", "Ya", "Bisa", "Tidak bisa"],
+            correct: 2,
+          },
+          {
+            question: "Aksara Lontara berasal dari?",
+            options: ["Jawa", "Bali", "Sulawesi", "Sumatera"],
+            correct: 2,
+          },
+        ],
+        adat: [
+          {
+            question: "Upacara Ngaben adalah tradisi dari?",
+            options: ["Jawa", "Bali", "Sumatera", "Sulawesi"],
+            correct: 1,
+          },
+          {
+            question: "Rumah adat Joglo berasal dari?",
+            options: ["Jawa Tengah", "Jawa Barat", "Jawa Timur", "Banten"],
+            correct: 0,
+          },
+          {
+            question: "Upacara Sekaten dilakukan di?",
+            options: ["Solo dan Yogyakarta", "Jakarta", "Bandung", "Surabaya"],
+            correct: 0,
+          },
+          {
+            question: "Rumah adat Tongkonan berasal dari?",
+            options: [
+              "Sulawesi Selatan",
+              "Sulawesi Utara",
+              "Sulawesi Tengah",
+              "Sulawesi Tenggara",
+            ],
+            correct: 0,
+          },
+          {
+            question: "Upacara Rambu Solo adalah tradisi dari suku?",
+            options: ["Bugis", "Toraja", "Minahasa", "Dayak"],
+            correct: 1,
+          },
+          {
+            question: "Pakaian adat Ulos berasal dari?",
+            options: ["Aceh", "Sumatera Utara", "Sumatera Barat", "Riau"],
+            correct: 1,
+          },
+          {
+            question: "Upacara Nyepi adalah tradisi dari?",
+            options: ["Jawa", "Bali", "Lombok", "Sumatera"],
+            correct: 1,
+          },
+          {
+            question: "Rumah adat Gadang berasal dari?",
+            options: ["Sumatera Utara", "Sumatera Barat", "Jambi", "Riau"],
+            correct: 1,
+          },
+          {
+            question: "Suku Dayak terkenal dengan rumah adat?",
+            options: ["Betang", "Tongkonan", "Joglo", "Gadang"],
+            correct: 0,
+          },
+          {
+            question: "Upacara adat Erau berasal dari?",
+            options: [
+              "Kalimantan Timur",
+              "Kalimantan Barat",
+              "Kalimantan Selatan",
+              "Kalimantan Tengah",
+            ],
+            correct: 0,
+          },
+          {
+            question: "Upacara Tabuik berasal dari?",
+            options: ["Padang", "Medan", "Palembang", "Pekanbaru"],
+            correct: 0,
+          },
+          {
+            question: "Rumah adat Honai berasal dari?",
+            options: ["Papua", "Maluku", "NTT", "Sulawesi"],
+            correct: 0,
+          },
+          {
+            question: "Pakaian adat Kebaya berasal dari?",
+            options: ["Jawa", "Sunda", "Betawi", "Semua benar"],
+            correct: 3,
+          },
+          {
+            question: "Upacara Grebeg Mulud dilakukan di?",
+            options: ["Demak", "Solo", "Yogyakarta", "Semua benar"],
+            correct: 3,
+          },
+          {
+            question: "Rumah adat Limas berasal dari?",
+            options: ["Sumatera Selatan", "Lampung", "Bengkulu", "Jambi"],
+            correct: 0,
+          },
+          {
+            question: "Upacara Tedak Siten adalah tradisi?",
+            options: ["Jawa", "Sunda", "Bali", "Batak"],
+            correct: 0,
+          },
+        ],
+        campuran: [
+          {
+            question:
+              "Apa nama teknik pewarnaan batik yang menggunakan lilin sebagai perintang warna?",
+            options: ["Jumputan", "Ikat", "Canting", "Resist dyeing"],
+            correct: 3,
+          },
+          {
+            question: "Kerajaan Majapahit didirikan oleh?",
+            options: ["Raden Wijaya", "Gajah Mada", "Hayam Wuruk", "Ken Arok"],
+            correct: 0,
+          },
+          {
+            question: "Makanan khas Padang yang terkenal adalah?",
+            options: ["Gudeg", "Rendang", "Rawon", "Soto Betawi"],
+            correct: 1,
+          },
+          {
+            question: "Dalam bahasa Jawa, 'sampun' artinya?",
+            options: ["Belum", "Sudah", "Akan", "Sedang"],
+            correct: 1,
+          },
+          {
+            question: "Upacara Ngaben adalah tradisi dari?",
+            options: ["Jawa", "Bali", "Sumatera", "Sulawesi"],
+            correct: 1,
+          },
+          {
+            question: "Tari Kecak berasal dari daerah?",
+            options: [
+              "Jawa Tengah",
+              "Bali",
+              "Sumatera Barat",
+              "Sulawesi Selatan",
+            ],
+            correct: 1,
+          },
+          {
+            question: "Candi Borobudur dibangun pada masa kerajaan?",
+            options: ["Majapahit", "Sailendra", "Mataram Kuno", "Singasari"],
+            correct: 1,
+          },
+          {
+            question: "Gudeg adalah makanan khas dari?",
+            options: ["Solo", "Yogyakarta", "Semarang", "Surabaya"],
+            correct: 1,
+          },
+          {
+            question: "Dalam bahasa Sunda, 'kumaha' artinya?",
+            options: ["Kapan", "Dimana", "Bagaimana", "Mengapa"],
+            correct: 2,
+          },
+          {
+            question: "Rumah adat Joglo berasal dari?",
+            options: ["Jawa Tengah", "Jawa Barat", "Jawa Timur", "Banten"],
+            correct: 0,
+          },
+          {
+            question: "Alat musik tradisional Angklung berasal dari?",
+            options: ["Jawa Barat", "Jawa Tengah", "Jawa Timur", "Banten"],
+            correct: 0,
+          },
+          {
+            question: "Siapa yang dijuluki sebagai Bapak Pendidikan Indonesia?",
+            options: [
+              "R.A. Kartini",
+              "Ki Hajar Dewantara",
+              "Ir. Soekarno",
+              "Mohammad Hatta",
+            ],
+            correct: 1,
+          },
+          {
+            question: "Pempek adalah makanan khas dari?",
+            options: ["Lampung", "Palembang", "Jambi", "Bengkulu"],
+            correct: 1,
+          },
+          {
+            question: "Bahasa daerah 'Minangkabau' berasal dari?",
+            options: ["Sumatera Utara", "Sumatera Barat", "Riau", "Jambi"],
+            correct: 1,
+          },
+          {
+            question: "Rumah adat Tongkonan berasal dari?",
+            options: [
+              "Sulawesi Selatan",
+              "Sulawesi Utara",
+              "Sulawesi Tengah",
+              "Sulawesi Tenggara",
+            ],
+            correct: 0,
+          },
+          {
+            question: "Tari Saman berasal dari provinsi?",
+            options: ["Sumatera Utara", "Aceh", "Sumatera Barat", "Riau"],
+            correct: 1,
+          },
+          {
+            question: "Kerajaan Sriwijaya berpusat di?",
+            options: ["Jambi", "Palembang", "Medan", "Pekanbaru"],
+            correct: 1,
+          },
+          {
+            question: "Es Cendol berasal dari daerah?",
+            options: ["Jawa Barat", "Jawa Tengah", "Jawa Timur", "Banten"],
+            correct: 0,
+          },
+          {
+            question: "Dalam bahasa Batak, 'horas' artinya?",
+            options: [
+              "Selamat datang",
+              "Sampai jumpa",
+              "Terima kasih",
+              "Salam sejahtera",
+            ],
+            correct: 3,
+          },
+          {
+            question: "Upacara Sekaten dilakukan di?",
+            options: ["Solo dan Yogyakarta", "Jakarta", "Bandung", "Surabaya"],
+            correct: 0,
+          },
+          {
+            question: "Kesenian Reog Ponorogo berasal dari provinsi?",
+            options: [
+              "Jawa Tengah",
+              "Jawa Timur",
+              "Jawa Barat",
+              "DI Yogyakarta",
+            ],
+            correct: 1,
+          },
+          {
+            question: "Proklamasi Kemerdekaan Indonesia dibacakan tanggal?",
+            options: [
+              "16 Agustus 1945",
+              "17 Agustus 1945",
+              "18 Agustus 1945",
+              "15 Agustus 1945",
+            ],
+            correct: 1,
+          },
+          {
+            question: "Sate Lilit adalah makanan khas dari?",
+            options: ["Lombok", "Bali", "NTT", "NTB"],
+            correct: 1,
+          },
+          {
+            question: "Bahasa Sasak digunakan di?",
+            options: ["Bali", "Lombok", "Sumbawa", "Flores"],
+            correct: 1,
+          },
+          {
+            question: "Pakaian adat Ulos berasal dari?",
+            options: ["Aceh", "Sumatera Utara", "Sumatera Barat", "Riau"],
+            correct: 1,
+          },
+        ],
+      };
+
+      function startQuiz(category) {
+        document.getElementById("categoriesSection").classList.add("hidden");
+        document.getElementById("learningSection").classList.add("hidden");
+        document.getElementById("quizSection").classList.remove("hidden");
+
+        currentQuizData = {
+          category: category,
+          questions: sampleQuestions[category] || sampleQuestions.seni,
+          score: 0,
+        };
+
+        currentQuestionIndex = 0;
+        userAnswers = [];
+        startTime = new Date();
+
+        updateQuizHeader();
+        loadQuestion();
+      }
+
+      function updateQuizHeader() {
+        document.getElementById("quizTitle").textContent = `Kuis ${
+          currentQuizData.category.charAt(0).toUpperCase() +
+          currentQuizData.category.slice(1)
+        }`;
+        document.getElementById("totalQuestions").textContent =
+          currentQuizData.questions.length;
+      }
+
+      function loadQuestion() {
+        const question = currentQuizData.questions[currentQuestionIndex];
+        document.getElementById("currentQuestion").textContent =
+          currentQuestionIndex + 1;
+        document.getElementById("questionText").textContent = question.question;
+
+        const optionsContainer = document.getElementById("optionsContainer");
+        optionsContainer.innerHTML = "";
+
+        question.options.forEach((option, index) => {
+          const optionDiv = document.createElement("div");
+          optionDiv.className =
+            "quiz-option bg-brown-50 border border-brown-200 rounded-lg p-4 cursor-pointer hover:bg-brown-100";
+          optionDiv.textContent = option;
+          optionDiv.onclick = () => selectOption(index, optionDiv);
+          optionsContainer.appendChild(optionDiv);
+        });
+
+        updateProgressBar();
+        updateNavigationButtons();
+      }
+
+      function selectOption(optionIndex, element) {
+        // Remove previous selection
+        document.querySelectorAll(".quiz-option").forEach((opt) => {
+          opt.classList.remove("selected");
+        });
+
+        // Add selection to clicked option
+        element.classList.add("selected");
+        userAnswers[currentQuestionIndex] = optionIndex;
+      }
+
+      function nextQuestion() {
+        if (currentQuestionIndex < currentQuizData.questions.length - 1) {
+          currentQuestionIndex++;
+          loadQuestion();
+        } else {
+          finishQuiz();
+        }
+      }
+
+      function previousQuestion() {
+        if (currentQuestionIndex > 0) {
+          currentQuestionIndex--;
+          loadQuestion();
+        }
+      }
+
+      function updateProgressBar() {
+        const progress =
+          ((currentQuestionIndex + 1) / currentQuizData.questions.length) * 100;
+        document.getElementById("progressBar").style.width = progress + "%";
+      }
+
+      function updateNavigationButtons() {
+        document.getElementById("prevButton").disabled =
+          currentQuestionIndex === 0;
+        document.getElementById("nextButton").textContent =
+          currentQuestionIndex === currentQuizData.questions.length - 1
+            ? "Selesai"
+            : "Selanjutnya →";
+      }
+
+      function finishQuiz() {
+        // Calculate score
+        let correctAnswers = 0;
+        currentQuizData.questions.forEach((question, index) => {
+          if (userAnswers[index] === question.correct) {
+            correctAnswers++;
+          }
+        });
+
+        currentQuizData.score = correctAnswers;
+        const accuracy = Math.round(
+          (correctAnswers / currentQuizData.questions.length) * 100
+        );
+        const timeTaken = Math.round((new Date() - startTime) / 1000);
+
+        // Show results
+        document.getElementById("quizSection").classList.add("hidden");
+        document.getElementById("resultsSection").classList.remove("hidden");
+
+        document.getElementById("finalScore").textContent = correctAnswers;
+        document.getElementById("finalTotal").textContent =
+          currentQuizData.questions.length;
+        document.getElementById("correctAnswers").textContent = correctAnswers;
+        document.getElementById("accuracyPercentage").textContent =
+          accuracy + "%";
+        document.getElementById("timeTaken").textContent =
+          Math.floor(timeTaken / 60) +
+          ":" +
+          (timeTaken % 60).toString().padStart(2, "0");
+
+        // Set result message and icon
+        let message, icon;
+        if (accuracy >= 90) {
+          message = "Luar biasa! Anda sangat menguasai budaya Indonesia!";
+          icon = "🏆";
+        } else if (accuracy >= 70) {
+          message = "Bagus! Pengetahuan budaya Anda cukup baik.";
+          icon = "🎖️";
+        } else if (accuracy >= 50) {
+          message = "Tidak buruk! Masih ada ruang untuk belajar lebih banyak.";
+          icon = "📚";
+        } else {
+          message =
+            "Jangan menyerah! Mari pelajari lebih banyak tentang budaya Indonesia.";
+          icon = "💪";
+        }
+
+        document.getElementById("scoreMessage").textContent = message;
+        document.getElementById("resultIcon").textContent = icon;
+      }
+
+      function exitQuiz() {
+        if (confirm("Apakah Anda yakin ingin keluar dari kuis?")) {
+          backToCategories();
+        }
+      }
+
+      function restartQuiz() {
+        document.getElementById("resultsSection").classList.add("hidden");
+        startQuiz(currentQuizData.category);
+      }
+
+      function backToCategories() {
+        document.getElementById("quizSection").classList.add("hidden");
+        document.getElementById("resultsSection").classList.add("hidden");
+        document.getElementById("categoriesSection").classList.remove("hidden");
+        document.getElementById("learningSection").classList.remove("hidden");
+      }
+    </script>
+  </body>
+</html>

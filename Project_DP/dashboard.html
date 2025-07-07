@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - BhraGha</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brown: {
+                50: "#fdf8f6",
+                100: "#f2e8e5",
+                200: "#eaddd7",
+                300: "#e0cec7",
+                400: "#d2bab0",
+                500: "#bfa094",
+                600: "#a18072",
+                700: "#977669",
+                800: "#8B4513",
+                900: "#654321",
+              },
+              cream: {
+                50: "#fefdf8",
+                100: "#fdf8e1",
+                200: "#fbf0c4",
+                300: "#f8e497",
+                400: "#f4d76a",
+                500: "#F5F5DC",
+                600: "#e6d5a3",
+                700: "#d4c072",
+                800: "#c2a83d",
+                900: "#a08c2a",
+              },
+              gold: {
+                50: "#fffbeb",
+                100: "#fef3c7",
+                200: "#fde68a",
+                300: "#fcd34d",
+                400: "#fbbf24",
+                500: "#f59e0b",
+                600: "#d97706",
+                700: "#b45309",
+                800: "#92400e",
+                900: "#78350f",
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        background: linear-gradient(135deg, #f5f5dc 0%, #eaddd7 100%);
+        min-height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="bg-brown-800 shadow-lg sticky top-0 z-50">
+      <div class="container mx-auto px-4 py-4">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-3">
+            <div
+              class="w-12 h-12 bg-cream-500 rounded-full flex items-center justify-center"
+            >
+              <div
+                class="w-8 h-8 bg-brown-800 rounded-full flex items-center justify-center"
+              >
+                <div class="w-4 h-4 bg-cream-500 rounded-full"></div>
+              </div>
+            </div>
+            <div>
+              <h1 class="text-2xl font-bold text-cream-100">BhraGha</h1>
+              <p class="text-cream-300 text-sm">
+                Platform Edukasi Sosial Budaya
+              </p>
+            </div>
+          </div>
+
+          <nav class="hidden md:flex items-center space-x-8">
+            <a
+              href="index.html"
+              class="text-cream-200 hover:text-gold-400 transition-colors duration-200 font-medium"
+              >Beranda</a
+            >
+            <a
+              href="deteksi-ai.html"
+              class="text-cream-200 hover:text-gold-400 transition-colors duration-200 font-medium"
+              >Deteksi AI</a
+            >
+            <a
+              href="cerita-budaya.html"
+              class="text-cream-200 hover:text-gold-400 transition-colors duration-200 font-medium"
+              >Cerita Budaya</a
+            >
+            <a
+              href="forum.html"
+              class="text-cream-200 hover:text-gold-400 transition-colors duration-200 font-medium"
+              >Forum</a
+            >
+            <a
+              href="kuis.html"
+              class="text-cream-200 hover:text-gold-400 transition-colors duration-200 font-medium"
+              >Kuis</a
+            >
+            <a href="dashboard.html" class="text-gold-400 font-medium"
+              >Dashboard</a
+            >
+          </nav>
+
+          <div class="flex items-center space-x-4">
+            <button
+              onclick="window.location.href='profil.html'"
+              class="bg-gold-600 hover:bg-gold-700 text-brown-900 font-semibold px-4 py-2 rounded-md transition-all duration-200"
+            >
+              Profil
+            </button>
+            <button
+              onclick="logout()"
+              class="text-cream-200 hover:text-gold-400 transition-colors"
+            >
+              Keluar
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="py-8 px-4">
+      <div class="container mx-auto">
+        <!-- Welcome Section -->
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+          <div class="flex items-center justify-between">
+            <div>
+              <h2 class="text-3xl font-bold text-brown-800 mb-2">
+                Selamat Datang di Dashboard
+              </h2>
+              <p class="text-brown-600">
+                Jelajahi semua fitur BhraGha untuk memperkaya pengetahuan budaya
+                Anda
+              </p>
+            </div>
+            <div
+              class="w-24 h-24 bg-brown-800 rounded-full flex items-center justify-center"
+            >
+              <div
+                class="w-16 h-16 bg-cream-100 rounded-full flex items-center justify-center"
+              >
+                <div class="w-10 h-10 bg-brown-800 rounded-full"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fitur Unggulan -->
+        <section class="mb-12">
+          <h3 class="text-2xl font-bold text-brown-800 mb-8 text-center">
+            Fitur Unggulan
+          </h3>
+
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Deteksi AI -->
+            <div
+              class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow"
+            >
+              <div
+                class="w-16 h-16 bg-brown-800 rounded-full flex items-center justify-center mb-4 mx-auto"
+              >
+                <span class="text-2xl">🤖</span>
+              </div>
+              <h4 class="text-xl font-bold text-brown-800 mb-3 text-center">
+                Deteksi Penyimpangan Budaya
+              </h4>
+              <p class="text-brown-600 mb-4 text-center">
+                Teknologi AI kami dapat mengidentifikasi penyimpangan budaya dan
+                memberikan analisis mendalam tentang keaslian praktik budaya.
+              </p>
+              <button
+                onclick="window.location.href='deteksi-ai.html'"
+                class="w-full bg-brown-800 hover:bg-brown-900 text-white font-semibold py-2 rounded-md transition-colors"
+              >
+                Coba Sekarang
+              </button>
+            </div>
+
+            <!-- Cerita Budaya -->
+            <div
+              class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow"
+            >
+              <div
+                class="w-16 h-16 bg-brown-800 rounded-full flex items-center justify-center mb-4 mx-auto"
+              >
+                <span class="text-2xl">📚</span>
+              </div>
+              <h4 class="text-xl font-bold text-brown-800 mb-3 text-center">
+                Cerita Budaya Interaktif
+              </h4>
+              <p class="text-brown-600 mb-4 text-center">
+                Jelajahi cerita rakyat dan legenda dari berbagai daerah di
+                Indonesia melalui pengalaman interaktif yang menarik.
+              </p>
+              <button
+                onclick="window.location.href='cerita-budaya.html'"
+                class="w-full bg-brown-800 hover:bg-brown-900 text-white font-semibold py-2 rounded-md transition-colors"
+              >
+                Baca Cerita
+              </button>
+            </div>
+
+            <!-- Forum -->
+            <div
+              class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow"
+            >
+              <div
+                class="w-16 h-16 bg-brown-800 rounded-full flex items-center justify-center mb-4 mx-auto"
+              >
+                <span class="text-2xl">💬</span>
+              </div>
+              <h4 class="text-xl font-bold text-brown-800 mb-3 text-center">
+                Forum Diskusi Budaya
+              </h4>
+              <p class="text-brown-600 mb-4 text-center">
+                Bergabunglah dalam diskusi dengan pakar budaya dan sesama
+                penggemar untuk berbagi pengetahuan dan pengalaman.
+              </p>
+              <button
+                onclick="window.location.href='forum.html'"
+                class="w-full bg-brown-800 hover:bg-brown-900 text-white font-semibold py-2 rounded-md transition-colors"
+              >
+                Gabung Forum
+              </button>
+            </div>
+
+            <!-- Kuis -->
+            <div
+              class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow"
+            >
+              <div
+                class="w-16 h-16 bg-brown-800 rounded-full flex items-center justify-center mb-4 mx-auto"
+              >
+                <span class="text-2xl">❓</span>
+              </div>
+              <h4 class="text-xl font-bold text-brown-800 mb-3 text-center">
+                Kuis dan Pembelajaran
+              </h4>
+              <p class="text-brown-600 mb-4 text-center">
+                Uji pengetahuan budaya Anda melalui kuis interaktif dan dapatkan
+                materi pembelajaran yang menarik.
+              </p>
+              <button
+                onclick="window.location.href='kuis.html'"
+                class="w-full bg-brown-800 hover:bg-brown-900 text-white font-semibold py-2 rounded-md transition-colors"
+              >
+                Mulai Kuis
+              </button>
+            </div>
+
+            <!-- Dashboard Visual -->
+            <div
+              class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow"
+            >
+              <div
+                class="w-16 h-16 bg-brown-800 rounded-full flex items-center justify-center mb-4 mx-auto"
+              >
+                <span class="text-2xl">📊</span>
+              </div>
+              <h4 class="text-xl font-bold text-brown-800 mb-3 text-center">
+                Dashboard Edukasi Visual
+              </h4>
+              <p class="text-brown-600 mb-4 text-center">
+                Visualisasi data dan statistik budaya yang membantu Anda
+                memahami tren dan perkembangan budaya Indonesia.
+              </p>
+              <button
+                class="w-full bg-brown-800 hover:bg-brown-900 text-white font-semibold py-2 rounded-md transition-colors"
+              >
+                Lihat Dashboard
+              </button>
+            </div>
+
+            <!-- Pelestarian -->
+            <div
+              class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow"
+            >
+              <div
+                class="w-16 h-16 bg-brown-800 rounded-full flex items-center justify-center mb-4 mx-auto"
+              >
+                <span class="text-2xl">🏛️</span>
+              </div>
+              <h4 class="text-xl font-bold text-brown-800 mb-3 text-center">
+                Pelestarian Budaya
+              </h4>
+              <p class="text-brown-600 mb-4 text-center">
+                Kontribusikan pengetahuan Anda untuk membantu melestarikan
+                warisan budaya Indonesia untuk generasi mendatang.
+              </p>
+              <button
+                class="w-full bg-brown-800 hover:bg-brown-900 text-white font-semibold py-2 rounded-md transition-colors"
+              >
+                Kontribusi
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Testimonial Section -->
+        <section class="mb-12">
+          <h3 class="text-2xl font-bold text-brown-800 mb-8 text-center">
+            Apa Kata Mereka
+          </h3>
+
+          <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-white rounded-lg shadow-lg p-6">
+              <p class="text-brown-600 mb-4">
+                "BhraGha membantu saya memahami kekayaan budaya Indonesia dengan
+                cara yang menyenangkan. Fitur deteksi AI sangat membantu untuk
+                memverifikasi informasi budaya."
+              </p>
+              <div class="flex items-center">
+                <div
+                  class="w-10 h-10 bg-brown-800 rounded-full flex items-center justify-center mr-3"
+                >
+                  <span class="text-white font-bold">A</span>
+                </div>
+                <div>
+                  <p class="font-semibold text-brown-800">Andi Wijaya</p>
+                  <p class="text-sm text-brown-600">Mahasiswa Antropologi</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-6">
+              <p class="text-brown-600 mb-4">
+                "Sebagai guru, saya menggunakan BhraGha untuk mengajarkan budaya
+                Indonesia kepada siswa saya. Kuis interaktif dan cerita budaya
+                sangat disukai oleh mereka."
+              </p>
+              <div class="flex items-center">
+                <div
+                  class="w-10 h-10 bg-brown-800 rounded-full flex items-center justify-center mr-3"
+                >
+                  <span class="text-white font-bold">S</span>
+                </div>
+                <div>
+                  <p class="font-semibold text-brown-800">Siti Rahayu</p>
+                  <p class="text-sm text-brown-600">Guru Sekolah Dasar</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-6">
+              <p class="text-brown-600 mb-4">
+                "Forum diskusi di BhraGha mempertemukan saya dengan banyak pakar
+                budaya dan sesama penggemar untuk berbagi pengetahuan dan
+                pengalaman."
+              </p>
+              <div class="flex items-center">
+                <div
+                  class="w-10 h-10 bg-brown-800 rounded-full flex items-center justify-center mr-3"
+                >
+                  <span class="text-white font-bold">B</span>
+                </div>
+                <div>
+                  <p class="font-semibold text-brown-800">Budi Santoso</p>
+                  <p class="text-sm text-brown-600">Peneliti Budaya</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-brown-900 text-cream-100 py-8 px-4">
+      <div class="container mx-auto text-center">
+        <div class="flex items-center justify-center space-x-3 mb-4">
+          <div
+            class="w-10 h-10 bg-cream-500 rounded-full flex items-center justify-center"
+          >
+            <div
+              class="w-6 h-6 bg-brown-900 rounded-full flex items-center justify-center"
+            >
+              <div class="w-3 h-3 bg-cream-500 rounded-full"></div>
+            </div>
+          </div>
+          <h3 class="text-xl font-bold">BhraGha</h3>
+        </div>
+        <p class="text-cream-300 mb-4">
+          Platform edukasi sosial budaya berbasis AI untuk melestarikan warisan
+          budaya Indonesia.
+        </p>
+        <p class="text-cream-400">
+          &copy; 2024 BhraGha. Semua hak cipta dilindungi.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      function logout() {
+        if (confirm("Apakah Anda yakin ingin keluar?")) {
+          alert("Berhasil keluar dari akun");
+          window.location.href = "index.html";
+        }
+      }
+    </script>
+  </body>
+</html>

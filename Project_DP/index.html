@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BhraGha - Platform Edukasi Sosial Budaya</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brown: {
+                50: "#fdf8f6",
+                100: "#f2e8e5",
+                200: "#eaddd7",
+                300: "#e0cec7",
+                400: "#d2bab0",
+                500: "#bfa094",
+                600: "#a18072",
+                700: "#977669",
+                800: "#8B4513",
+                900: "#654321",
+              },
+              cream: {
+                50: "#fefdf8",
+                100: "#fdf8e1",
+                200: "#fbf0c4",
+                300: "#f8e497",
+                400: "#f4d76a",
+                500: "#F5F5DC",
+                600: "#e6d5a3",
+                700: "#d4c072",
+                800: "#c2a83d",
+                900: "#a08c2a",
+              },
+              gold: {
+                50: "#fffbeb",
+                100: "#fef3c7",
+                200: "#fde68a",
+                300: "#fcd34d",
+                400: "#fbbf24",
+                500: "#f59e0b",
+                600: "#d97706",
+                700: "#b45309",
+                800: "#92400e",
+                900: "#78350f",
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        background: linear-gradient(135deg, #f5f5dc 0%, #eaddd7 100%);
+        min-height: 100vh;
+      }
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+      .modal.active {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="bg-brown-800 shadow-lg sticky top-0 z-50">
+      <div class="container mx-auto px-4 py-4">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-3">
+            <div
+              class="w-12 h-12 bg-cream-500 rounded-full flex items-center justify-center"
+            >
+              <div
+                class="w-8 h-8 bg-brown-800 rounded-full flex items-center justify-center"
+              >
+                <div class="w-4 h-4 bg-cream-500 rounded-full"></div>
+              </div>
+            </div>
+            <div>
+              <h1 class="text-2xl font-bold text-cream-100">BhraGha</h1>
+              <p class="text-cream-300 text-sm">
+                Platform Edukasi Sosial Budaya
+              </p>
+            </div>
+          </div>
+
+          <nav class="hidden md:flex items-center space-x-8">
+            <a
+              href="index.html"
+              class="text-cream-200 hover:text-gold-400 transition-colors duration-200 font-medium"
+              >Beranda</a
+            >
+            <a
+              href="deteksi-ai.html"
+              class="text-cream-200 hover:text-gold-400 transition-colors duration-200 font-medium"
+              >Deteksi AI</a
+            >
+            <a
+              href="cerita-budaya.html"
+              class="text-cream-200 hover:text-gold-400 transition-colors duration-200 font-medium"
+              >Cerita Budaya</a
+            >
+            <a
+              href="forum.html"
+              class="text-cream-200 hover:text-gold-400 transition-colors duration-200 font-medium"
+              >Forum</a
+            >
+            <a
+              href="kuis.html"
+              class="text-cream-200 hover:text-gold-400 transition-colors duration-200 font-medium"
+              >Kuis</a
+            >
+            <a
+              href="dashboard.html"
+              class="text-cream-200 hover:text-gold-400 transition-colors duration-200 font-medium"
+              >Dashboard</a
+            >
+          </nav>
+
+          <button
+            onclick="openModal()"
+            class="bg-gold-600 hover:bg-gold-700 text-brown-900 font-semibold px-6 py-2 rounded-md transition-all duration-200 transform hover:scale-105"
+          >
+            Masuk
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Hero Section -->
+      <section class="py-20 px-4">
+        <div class="container mx-auto">
+          <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-8">
+              <h1
+                class="text-5xl lg:text-6xl font-bold text-brown-900 leading-tight"
+              >
+                Jelajahi Kekayaan Budaya
+                <span class="text-gold-700 block">Indonesia</span>
+              </h1>
+
+              <p class="text-lg text-brown-700 leading-relaxed max-w-2xl">
+                BhraGha adalah platform edukasi sosial budaya berbasis AI untuk
+                meningkatkan literasi budaya digital. Temukan, pelajari, dan
+                lestarikan warisan budaya Indonesia bersama kami.
+              </p>
+
+              <div class="flex flex-col sm:flex-row gap-4">
+                <button
+                  onclick="window.location.href='dashboard.html'"
+                  class="bg-brown-800 hover:bg-brown-900 text-cream-100 px-8 py-3 text-lg font-semibold rounded-md transition-all duration-200 transform hover:scale-105"
+                >
+                  Mulai Jelajah
+                </button>
+                <button
+                  onclick="openModal()"
+                  class="border-2 border-gold-600 text-gold-700 hover:bg-gold-600 hover:text-brown-900 px-8 py-3 text-lg font-semibold rounded-md transition-all duration-200"
+                >
+                  Pelajari Lebih Lanjut
+                </button>
+              </div>
+            </div>
+
+            <div class="relative">
+              <div class="w-80 h-80 mx-auto">
+                <div
+                  class="w-full h-full bg-gradient-to-br from-gold-400 to-brown-600 rounded-full flex items-center justify-center shadow-2xl"
+                >
+                  <div
+                    class="w-60 h-60 bg-cream-100 rounded-full flex items-center justify-center"
+                  >
+                    <div
+                      class="w-40 h-40 bg-brown-800 rounded-full flex items-center justify-center"
+                    >
+                      <div
+                        class="w-20 h-20 bg-gold-500 rounded-full flex items-center justify-center"
+                      >
+                        <div class="w-8 h-8 bg-cream-100 rounded-full"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Section -->
+      <section class="bg-brown-800 text-cream-100 py-16 px-4">
+        <div class="container mx-auto text-center">
+          <h2 class="text-3xl font-bold mb-4">
+            Bergabunglah dengan Komunitas BhraGha
+          </h2>
+          <p class="text-cream-300 text-lg mb-8 max-w-2xl mx-auto">
+            Jadilah bagian dari gerakan pelestarian budaya Indonesia. Daftar
+            sekarang dan dapatkan akses ke semua fitur BhraGha secara gratis.
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <button
+              onclick="toggleToSignUp(); openModal();"
+              class="bg-cream-100 hover:bg-cream-200 text-brown-800 px-8 py-3 text-lg font-semibold rounded-md transition-all duration-200"
+            >
+              Daftar Sekarang
+            </button>
+            <button
+              onclick="window.location.href='dashboard.html'"
+              class="border-2 border-cream-100 text-cream-100 hover:bg-cream-100 hover:text-brown-800 px-8 py-3 text-lg font-semibold rounded-md transition-all duration-200"
+            >
+              Pelajari Lebih Lanjut
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-brown-900 text-cream-100 py-12 px-4">
+      <div class="container mx-auto">
+        <div class="grid md:grid-cols-3 gap-8">
+          <div>
+            <div class="flex items-center space-x-3 mb-4">
+              <div
+                class="w-10 h-10 bg-cream-500 rounded-full flex items-center justify-center"
+              >
+                <div
+                  class="w-6 h-6 bg-brown-900 rounded-full flex items-center justify-center"
+                >
+                  <div class="w-3 h-3 bg-cream-500 rounded-full"></div>
+                </div>
+              </div>
+              <h3 class="text-xl font-bold">BhraGha</h3>
+            </div>
+            <p class="text-cream-300 leading-relaxed">
+              Platform edukasi sosial budaya berbasis AI untuk melestarikan
+              warisan budaya Indonesia.
+            </p>
+          </div>
+
+          <div>
+            <h4 class="font-semibold mb-4 text-gold-400">Menu Utama</h4>
+            <ul class="space-y-2 text-cream-300">
+              <li>
+                <a
+                  href="index.html"
+                  class="hover:text-gold-400 transition-colors"
+                  >Beranda</a
+                >
+              </li>
+              <li>
+                <a
+                  href="deteksi-ai.html"
+                  class="hover:text-gold-400 transition-colors"
+                  >Deteksi AI</a
+                >
+              </li>
+              <li>
+                <a
+                  href="cerita-budaya.html"
+                  class="hover:text-gold-400 transition-colors"
+                  >Cerita Budaya</a
+                >
+              </li>
+              <li>
+                <a
+                  href="forum.html"
+                  class="hover:text-gold-400 transition-colors"
+                  >Forum</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="font-semibold mb-4 text-gold-400">Hubungi Kami</h4>
+            <ul class="space-y-2 text-cream-300">
+              <li>Email: info@bhragha.id</li>
+              <li>Telepon: (021) 123-4567</li>
+              <li>Alamat: Jakarta, Indonesia</li>
+            </ul>
+          </div>
+        </div>
+
+        <div
+          class="border-t border-brown-700 mt-8 pt-8 text-center text-cream-400"
+        >
+          <p>&copy; 2024 BhraGha. Semua hak cipta dilindungi.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+      <div class="bg-cream-50 rounded-lg p-8 max-w-md w-full mx-4 relative">
+        <button
+          onclick="closeModal()"
+          class="absolute top-4 right-4 text-brown-600 hover:text-brown-800 text-2xl"
+        >
+          &times;
+        </button>
+
+        <div class="text-center mb-8">
+          <div
+            class="w-20 h-20 bg-brown-800 rounded-full flex items-center justify-center mx-auto mb-4"
+          >
+            <div
+              class="w-12 h-12 bg-cream-100 rounded-full flex items-center justify-center"
+            >
+              <div class="w-8 h-8 bg-brown-800 rounded-full"></div>
+            </div>
+          </div>
+          <h2 class="text-2xl font-bold text-brown-800 mb-2">
+            Selamat Datang Kembali
+          </h2>
+          <p class="text-brown-600">
+            Masuk untuk melanjutkan perjalanan budaya Anda
+          </p>
+        </div>
+
+        <div class="space-y-4 mb-6">
+          <button
+            class="w-full flex items-center justify-center gap-3 bg-white border border-gray-300 rounded-lg px-4 py-3 hover:bg-gray-50 transition-colors"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24">
+              <path
+                fill="#4285F4"
+                d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+              />
+              <path
+                fill="#34A853"
+                d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+              />
+              <path
+                fill="#FBBC05"
+                d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+              />
+              <path
+                fill="#EA4335"
+                d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+              />
+            </svg>
+            Google
+          </button>
+
+          <button
+            class="w-full flex items-center justify-center gap-3 bg-blue-600 text-white rounded-lg px-4 py-3 hover:bg-blue-700 transition-colors"
+          >
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+              />
+            </svg>
+            Facebook
+          </button>
+        </div>
+
+        <div class="relative mb-6">
+          <div class="absolute inset-0 flex items-center">
+            <div class="w-full border-t border-brown-300"></div>
+          </div>
+          <div class="relative flex justify-center text-sm">
+            <span class="px-2 bg-cream-50 text-brown-600"
+              >atau masuk dengan email</span
+            >
+          </div>
+        </div>
+
+        <form id="loginForm" class="space-y-4">
+          <div>
+            <label class="block text-brown-700 font-medium mb-2">Email</label>
+            <input
+              type="email"
+              placeholder="nama@email.com"
+              class="w-full px-3 py-2 border border-brown-300 rounded-md focus:outline-none focus:border-gold-500"
+              required
+            />
+          </div>
+
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <label class="block text-brown-700 font-medium">Kata Sandi</label>
+              <a href="#" class="text-gold-700 text-sm hover:underline"
+                >Lupa kata sandi?</a
+              >
+            </div>
+            <input
+              type="password"
+              placeholder="Masukkan kata sandi"
+              class="w-full px-3 py-2 border border-brown-300 rounded-md focus:outline-none focus:border-gold-500"
+              required
+            />
+          </div>
+
+          <div class="flex items-center">
+            <input type="checkbox" id="remember" class="mr-2" />
+            <label for="remember" class="text-brown-700 text-sm"
+              >Ingat saya</label
+            >
+          </div>
+
+          <button
+            type="submit"
+            class="w-full bg-brown-800 hover:bg-brown-900 text-cream-100 font-semibold py-3 rounded-md transition-colors"
+          >
+            Masuk
+          </button>
+        </form>
+
+        <div class="mt-6 text-center">
+          <p class="text-brown-600 text-sm">
+            Belum memiliki akun?
+            <a
+              href="#"
+              onclick="toggleToSignUp()"
+              class="text-gold-700 hover:underline font-semibold"
+              >Daftar sekarang</a
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function openModal() {
+        document.getElementById("loginModal").classList.add("active");
+      }
+
+      function closeModal() {
+        document.getElementById("loginModal").classList.remove("active");
+      }
+
+      function toggleToSignUp() {
+        // Redirect to dashboard for demo purposes
+        window.location.href = "dashboard.html";
+      }
+
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          alert("Login berhasil! Mengarahkan ke dashboard...");
+          window.location.href = "dashboard.html";
+        });
+
+      // Close modal when clicking outside
+      document
+        .getElementById("loginModal")
+        .addEventListener("click", function (e) {
+          if (e.target === this) {
+            closeModal();
+          }
+        });
+    </script>
+  </body>
+</html>
