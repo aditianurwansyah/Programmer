@@ -1,0 +1,72 @@
+body { 
+    background-color: black;   
+   justify-content: center;
+   align-items: center; 
+}
+
+p {
+    color: black;  
+    text-align: center; 
+}
+
+.H{
+    color:white; 
+    text-align: center; 
+} 
+
+ .container { 
+    margin: auto;            
+    padding: 20px;      
+    background-color: purple;   
+    height: 100px;          
+    width: 1400px;           
+    box-shadow: 0 0 10px #000;    
+}  
+
+
+.card-body {
+    margin: 60px;      
+    padding: 20px;  
+    border-radius: 40px; 
+    background-color: red;
+    height: 400px; 
+    width: 300px; 
+    box-shadow: 0 0 10px #000;  
+    display: inline-block; 
+}
+
+.Image {   
+    display: block;  
+    margin-left: 20px;   
+    margin-right: auto; 
+} 
+
+.Image2 {   
+    display: block;  
+    margin-left: auto;    
+    margin-right: auto; 
+} 
+
+.Image3 {   
+    display: block;  
+    margin-left: auto;    
+    margin-right: auto; 
+} 
+
+.Image4 {   
+    display: block;  
+    margin-left: auto;    
+    margin-right: auto; 
+} 
+
+.Huruf { 
+    text-align: center; 
+    font-family: sans-serif; 
+    color: white;   
+} 
+
+.KontakName {
+    text-align: center; 
+} 
+
+ 
