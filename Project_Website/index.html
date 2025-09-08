@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portofolio Saya</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="container">
+        <a href="#" class="logo">MyPorto</a>
+        <ul class="nav-links">
+          <li><a href="#beranda">Beranda</a></li>
+          <li><a href="#profil">Profil</a></li>
+          <li><a href="#skill">Skill</a></li>
+          <li><a href="#kontak">Kontak</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">☰</div>
+      </div>
+    </nav>
+
+    <!-- Beranda -->
+    <section id="beranda" class="section beranda">
+      <div class="container">
+        <h1 class="fade-in">
+          Halo, Saya <span class="highlight">Nama Kamu</span>
+        </h1>
+        <p class="fade-in delay-1">
+          Web Developer | Cracker Password | Pentester Testing
+        </p>
+        <a href="#profil" class="btn fade-in delay-2">Lihat Profil</a>
+      </div>
+    </section>
+
+    <!-- Profil -->
+    <section id="profil" class="section profil">
+      <div class="container">
+        <h2>Profil</h2>
+        <div class="card">
+          <img src="images/avatar.jpg" alt="Avatar" class="avatar" />
+          <h3>Aditia</h3>
+          <p>
+            Saya adalah developer yang suka membuat aplikasi web dengan desain
+            modern dan fungsional.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skill -->
+    <section id="skill" class="section skill">
+      <div class="container">
+        <h2>Skill</h2>
+        <div class="skills-grid">
+          <div class="skill-card">HTML</div>
+          <div class="skill-card">CSS</div>
+          <div class="skill-card">JavaScript</div>
+          <div class="skill-card">React</div>
+          <div class="skill-card">Laravel</div>
+          <div class="skill-card">Figma</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Kontak -->
+    <section id="kontak" class="section kontak">
+      <div class="container">
+        <h2>Kontak</h2>
+        <form id="contactForm" class="card">
+          <input type="text" placeholder="Nama" required />
+          <input type="email" placeholder="Email" required />
+          <textarea placeholder="Pesan" required></textarea>
+          <button type="submit" class="btn">Kirim Pesan</button>
+        </form>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2025 Nama Kamu. Semua hak dilindungi.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
